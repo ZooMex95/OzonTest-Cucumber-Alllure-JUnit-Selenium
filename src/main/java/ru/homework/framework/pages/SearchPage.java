@@ -67,7 +67,8 @@ public class SearchPage extends BasePage {
                         address.findElement(By.xpath("./../../ul/li")).click();
                         address.findElement(By.xpath("./../../../..//button")).click();
 
-                        //element.click();// StaleElementReferenceException, осле уборки арки с адресом элемент переотрисовывается
+                        element.click();// StaleElementReferenceException, осле уборки арки с адресом элемент переотрисовывается
+
                     }
                 }
             }
