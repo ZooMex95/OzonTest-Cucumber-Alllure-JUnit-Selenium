@@ -1,5 +1,7 @@
 package ru.homework.framework.managers;
 
+import org.openqa.selenium.chrome.ChromeOptions;
+
 import java.util.concurrent.TimeUnit;
 
 import static ru.homework.framework.managers.DriverManager.getDriver;

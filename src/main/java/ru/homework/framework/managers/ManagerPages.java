@@ -1,11 +1,14 @@
 package ru.homework.framework.managers;
 
+import ru.homework.framework.pages.SearchPage;
 import ru.homework.framework.pages.StartPage;
 
 public class ManagerPages {
     private static ManagerPages managerPages;
 
     StartPage startPage;
+
+    SearchPage searchPage;
 
     private ManagerPages() {
 
@@ -23,5 +26,12 @@ public class ManagerPages {
             startPage = new StartPage();
         }
         return startPage;
+    }
+
+    public SearchPage getSearchPage() {
+        if (searchPage == null) {
+            searchPage = new SearchPage();
+        }
+        return searchPage;
     }
 }

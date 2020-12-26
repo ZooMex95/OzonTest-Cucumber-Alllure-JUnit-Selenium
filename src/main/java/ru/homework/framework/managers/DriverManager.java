@@ -2,7 +2,8 @@ package ru.homework.framework.managers;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import static ru.homework.framework.utils.PropConst.*;
 
@@ -15,15 +16,9 @@ public class DriverManager {
     private DriverManager(){}
 
     public static void initDriver() {
-        switch (props.getProperty(TYPE_BROWSER)){
-            case "firefox" :
-                System.setProperty("webdriver.gecko.driver", props.getProperty(PATH_GECKO_DRIVER));
-                driver = new FirefoxDriver();
-                break;
-            default:
-                System.setProperty("webdriver.chrome.driver", props.getProperty(PATH_CHROME_DRIVER));
-                driver = new ChromeDriver();
-        }
+        System.setProperty("webdriver.chrome.driver", props.getProperty(PATH_CHROME_DRIVER));
+        driver = new ChromeDriver();
+
     }
 
     public static WebDriver getDriver() {
