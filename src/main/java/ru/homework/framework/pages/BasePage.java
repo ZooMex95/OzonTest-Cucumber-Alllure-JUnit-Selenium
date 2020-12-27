@@ -38,6 +38,14 @@ public class BasePage {
         wait.until(ExpectedConditions.not(ExpectedConditions.textToBePresentInElement(element, oldText)));
     }
 
+    protected void waitElementToBeClickable(WebElement element) {
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    protected void waitElementToBeVisible(WebElement element) {
+        wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
     protected void scrollToElement(WebElement element) {
         js.executeScript("arguments[0].scrollIntoView(true);", element);
     }
