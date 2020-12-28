@@ -69,6 +69,8 @@ public class SearchPage extends BasePage {
             rememberProduct(currentProduct);
             addToCart(currentProduct, flag);
             countOfProductsInCart++;
+            wait.until(ExpectedConditions.textToBePresentInElement(
+                    cartButton.findElement(By.xpath("./span[contains(@class,'caption')]")), String.valueOf(countOfProductsInCart)));
             //waitFor1Sec();
         }
         //System.out.println("В сеарч пейдж: \n" + Product.listOfProducts);
@@ -81,7 +83,7 @@ public class SearchPage extends BasePage {
         return app.getCartPage();
     }
 
-
+//a[@data-widget='cart']/
 
 
     private void waitFor1Sec() {

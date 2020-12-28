@@ -34,7 +34,7 @@ public class Steps {
     @Когда("^wait$")
     public void waiter() {
         try {
-            Thread.sleep(2000000);
+            Thread.sleep(120000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -58,6 +58,12 @@ public class Steps {
     public void checkCountOfItems(String countOfItems) {
         app.getCartPage()
                 .checkText(countOfItems);
+    }
+
+    @Когда("^Удалить все товары из корзины$")
+    public void deleteAllProducts() {
+        app.getCartPage()
+                .deleteProducts();
     }
 
 }
