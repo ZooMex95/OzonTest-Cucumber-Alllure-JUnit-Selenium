@@ -28,7 +28,6 @@ public class Product {
         for (Product product: listOfProducts) {
             listOfNames.add(product.name);
         }
-        //System.out.println("В Продукте: \n" + listOfNames);
         return listOfNames;
     }
 }

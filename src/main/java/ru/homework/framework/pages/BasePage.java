@@ -1,17 +1,18 @@
 package ru.homework.framework.pages;
 
 import org.junit.Assert;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.homework.framework.managers.ManagerPages;
+import ru.homework.framework.managers.TestPropManager;
+
+import java.util.concurrent.TimeUnit;
 
 import static ru.homework.framework.managers.DriverManager.*;
+import static ru.homework.framework.utils.PropConst.IMPLICITLY_WAIT;
 
 public class BasePage {
     protected ManagerPages app = ManagerPages.getManagerPages();
@@ -54,5 +55,19 @@ public class BasePage {
         //Point p = element.getLocation();
         js.executeScript("scrollTo({top: " + (element.getLocation().y - 200) + "})");
         //js.executeScript("window.scroll(" + p.getX() + "," + (p.getY() + 300) + ");");
+    }
+
+    protected boolean isElementExistInWebElement(String value, WebElement element) { //проверка наличия элемента
+        boolean flag = false;
+        try {
+            getDriver().manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
+            element.findElement(By.xpath(".//*[contains(.,'" + value + "')]"));
+            flag = true;
+        } catch (NoSuchElementException ignored) {
+
+        } finally {
+            getDriver().manage().timeouts().implicitlyWait(Integer.parseInt(TestPropManager.getTestPropManager().getProperty(IMPLICITLY_WAIT)), TimeUnit.SECONDS);
+        }
+        return flag;
     }
 }

@@ -4,6 +4,7 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.ru.Когда;
 import ru.homework.framework.managers.ManagerPages;
 
+
 public class Steps {
 
     private ManagerPages app = ManagerPages.getManagerPages();
@@ -19,29 +20,14 @@ public class Steps {
                 .searchForProduct(nameOfProduct);
     }
 
-    @Когда("^Ограничить цену до '(.*)'$")
-    public void setPrice(String price) {
-        app.getSearchPage()
-                .setPriceTo(price);
+    @Когда("^Заполнить поля фильтр/значение$")
+    public void fillFilters(DataTable dataTable) {
+        dataTable.cells().forEach(
+                raw -> app.getSearchPage().fillFilters(raw.get(0), raw.get(1))
+        );
     }
 
-    @Когда("^Отметить чекбокс '(.*)'$")
-    public void setCheckbox(String name) {
-        app.getSearchPage()
-                .getOnCheckbox(name);
-    }
-
-    @Когда("^wait$")
-    public void waiter() {
-        try {
-            Thread.sleep(120000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    @Когда("^Добавить в корзину '(.*)' товаров$")
+    @Когда("^Добавить в корзину '(\\d+)' товаров$")
     public void addProductToCart(int count) {
         app.getSearchPage()
                 .addEvenProductToCart(count);
@@ -60,10 +46,19 @@ public class Steps {
                 .checkText(countOfItems);
     }
 
-    @Когда("^Удалить все товары из корзины$")
+    @Когда("^Удалить все товары из корзины и проверить ее$")
     public void deleteAllProducts() {
         app.getCartPage()
                 .deleteProducts();
+    }
+
+    @Когда("^wait$")
+    public void waiter() {
+        try {
+            Thread.sleep(120000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 }
