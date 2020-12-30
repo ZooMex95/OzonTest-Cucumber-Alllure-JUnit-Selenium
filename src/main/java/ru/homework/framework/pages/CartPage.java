@@ -36,15 +36,15 @@ public class CartPage extends BasePage {
             productNamesInCart.add(availableProducts.get(i).findElement(By.xpath(".//a/span")).getText());
         }
         Assert.assertTrue("Не все товары в корзине совпадают с сохраненными",
-                  productNamesInCart.containsAll(getNames()));
+                  productNamesInCart.containsAll(getNames())); //периодически не все товары совпадают о_О
         return this;
     }
 
 
-    public CartPage checkText(String countOfItems) { //доделать
+    public CartPage checkText() { //доделать
         WebElement element = cartText.findElement(By.xpath("./following::span"));
         Assert.assertTrue("Количество товаров в корзине не совпадает",
-                element.getText().toLowerCase().contains(countOfItems.toLowerCase()));
+                element.getText().toLowerCase().contains(Product.listOfProducts.size() + " товар"));
         return this;
     }
 

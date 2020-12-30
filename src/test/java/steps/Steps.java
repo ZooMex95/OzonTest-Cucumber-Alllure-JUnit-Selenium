@@ -27,10 +27,10 @@ public class Steps {
         );
     }
 
-    @Когда("^Добавить в корзину '(\\d+)' товаров$")
-    public void addProductToCart(int count) {
+    @Когда("^Добавить в корзину '(\\d+|все)' товар(?:ов|а|ы)$")
+    public void addProductToCart(String count) {
         app.getSearchPage()
-                .addEvenProductToCart(count);
+                .addProductsToCart(count);
     }
 
     @Когда("^Перейти в корзину и проверить добавленные товары$")
@@ -40,10 +40,10 @@ public class Steps {
                 .checkCart();
     }
 
-    @Когда("^Проверить текст '(.*)'$")
-    public void checkCountOfItems(String countOfItems) {
+    @Когда("^Проверить количество товаров в корзине$")
+    public void checkCountOfItems() {
         app.getCartPage()
-                .checkText(countOfItems);
+                .checkText();
     }
 
     @Когда("^Удалить все товары из корзины и проверить ее$")
@@ -55,6 +55,7 @@ public class Steps {
     @Когда("^wait$")
     public void waiter() {
         try {
+            System.out.println("WAIT!!!!");
             Thread.sleep(120000);
         } catch (InterruptedException e) {
             e.printStackTrace();

@@ -32,5 +32,8 @@ public class DriverManager {
     public static void quitDriver() {
         driver.quit();
         driver = null;
+        ManagerPages.quitPages();
     }
+
+
 }

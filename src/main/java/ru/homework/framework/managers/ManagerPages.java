@@ -7,11 +7,11 @@ import ru.homework.framework.pages.StartPage;
 public class ManagerPages {
     private static ManagerPages managerPages;
 
-    StartPage startPage;
+    static StartPage startPage;
 
-    SearchPage searchPage;
+    static SearchPage searchPage;
 
-    CartPage cartPage;
+    static CartPage cartPage;
 
     private ManagerPages() {
 
@@ -43,5 +43,17 @@ public class ManagerPages {
             cartPage = new CartPage();
         }
         return cartPage;
+    }
+
+    public static void quitPages() {
+        if (startPage != null) {
+            startPage = null;
+        }
+        if (searchPage != null) {
+            searchPage = null;
+        }
+        if (cartPage != null) {
+            cartPage = null;
+        }
     }
 }
